@@ -13,12 +13,8 @@ router.get ('/', function (request, response) {
     response.render ('home');
 });
 
-router.get ('/lessons', function (request, response) {
-    // response.send ('This is the lesson page');
-    response.render ('lessons');
-});
-
-router.post ('/basic/lesson', function (request, response) {
+//This route recieves data from the lesson form.
+router.post ('/lesson', function (request, response) {
     // response.send ('You created a lesson!');
 
     //Create the parts of the email.
@@ -35,16 +31,22 @@ router.post ('/basic/lesson', function (request, response) {
     var emailBody = 'Thanks for requesting a lesson ' + request.body.firstName + '! She is super excited to teach you. She will review your information and will email you directly. Thanks!'
 
     //Create a new lesson from the data sent down by form or API post.
-    var newLesson = Lesson (request.body);
+    var requestLesson = Lesson (request.body);
     console.log (request.body);
 
-    newLesson.save (function (error, result) {
+    requestLesson.save (function (error, result) {
         //Check for errors.
         if (error) {
             console.error ('***ERROR: Unable to save the lesson.');
             console.error (error);
         }
         else {
+
+            var lesson = Lesson (request.body)
+
+            //Link the lesson to the user that is currently logged in.
+            var user = request.session.user;
+            lesson.owner = user;
 
             //Send a confirmation email.
                 //Load in the http request module.
@@ -89,7 +91,7 @@ router.post ('/basic/lesson', function (request, response) {
                 //.flash and .redirect should be paired together because you want the
                 //flash message to show up when you redirect to the page.
                 request.flash ('success', 'Lesson was requested.');
-                response.redirect ('/lessons');
+                response.redirect ('/lesson');
 
             })
             .on ('error', function () {
@@ -105,14 +107,18 @@ router.post ('/basic/lesson', function (request, response) {
             //     //Add a flash message of our success.
             //     request.flash ('success', 'Lesson was requested.');
             //
-            //     //Redirect back to the product create page.
+            //     //Redirect back to the lesson page.
             //     response.redirect ('/lessons');
             // }
         }
     });
 });
 
-
+//Below moved to lesson route.
+// router.get ('/lessons', function (request, response) {
+//     // response.send ('This is the lesson page');
+//     response.render ('lessons');
+// });
 
 router.get ('/bio', function (request, response) {
     response.render ('bio');

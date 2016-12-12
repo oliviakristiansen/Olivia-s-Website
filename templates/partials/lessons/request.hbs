@@ -1,0 +1,109 @@
+<h2>Sign up for a lesson!</h2>
+
+{{#if message.success}}
+    <div class = "success notice">
+        <p>{{ message.success }}</p>
+    </div>
+{{/if}}
+
+<p>Olivia offers violin, viola and piano lessons to all ages! If you are interested in one, please check out the calendar below to see if her available times will work with your schedule. These days, she has a pretty busy life so the available times below are the only times she is able to teach. Please login or register so you are able to fill out some information to get you started with lessons. If there is a time on her schedule but it is already taken by another student, you can click on that specific time to see if there is a waitlist. If you would like to be placed on the waitlist, please fill out the required information and leave a comment with the date/time of the lesson for which you would like to be waitlisted. Thanks!</p>
+
+
+<!-- Create button below is only for admin -->
+<a class="btn btn-primary" href="/lesson/create">New Lesson</a>
+
+<!-- This list of names will only be for admin. User will just see unavailable -->
+{{#each data.lessons }}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div>
+                <strong>Name: </strong><a href ="/lesson/{{ id }}">{{ firstName }} {{ lastName}}</a>
+            </div>
+            <div>
+                <strong>Day of Week: </strong>{{ day }}
+            </div>
+            <div>
+                <strong>Time: </strong>{{ time }}
+            </div>
+        </div>
+    </div>
+{{/each }}
+
+
+
+<!-- Requesting a lesson will mainly be for user -->
+{{#if user }}
+<p>Please enter the following information to request a lesson.</p>
+
+    <div class="container">
+        <form method = "POST" action="/lesson" enctype="application/x-www-form-urlencoded">
+            <div class="form-group">
+                <label for="usr">First name: </label>
+                <input class="form-control" name="firstName" type="text" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+                <label for="usr">Last name: </label>
+                <input class="form-control" name="lastName" type="text" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address: </label>
+                <input class="form-control" name="email" type="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <label for="telephone">Telephone: </label>
+                <input class="form-control" name="telephone" type="number" placeholder="Telephone Number" required>
+            </div>
+            <div class="form-group">
+                <label for="instrument">Instrument: </label>
+                <select name="type" required>
+                    <option name="violin" type="checkbox">Violin</option>
+                    <option name="viola" type="checkbox">Viola</option>
+                    <option name="piano" type="checkbox">Piano</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Length of Lesson (in minutes): </label>
+                <select name="length">
+                    <option value="30">30</option>
+                    <option value="45">45</option>
+                    <option value="60">60</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Start Date: </label>
+                <input name="date" type="date" placeholder="Starting Date">
+            </div>
+            <div class="form-group">
+                <label>Day of Week: </label>
+                <!-- <input name="day" type="text" placeholder="Day of Week"> -->
+                <select name="day">
+                    <option value="Monday's">Monday's</option>
+                    <option value="Tuesday's">Tuesday's</option>
+                    <option value="Wednesday's">Wednesday's</option>
+                    <option value="Thursday's">Thursday's</option>
+                    <option value="Friday's">Friday's</option>
+                    <option value="Saturday's">Saturday's</option>
+                    <option value="Sunday's">Sunday's</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Select Time: </label>
+                <input name="time" type="time" placeholder="Time">
+            </div>
+            <div class="form-group">
+                <label for="where">Where: </label>
+                <div action="">
+                    <input type="radio" name="where" value="in-home" checked="checked">In-Home Lesson <br>
+                    <input type="radio" name="where" value="olivia-home">Olivia-Home Lesson <br>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Comments: </label>
+                <textarea class="form-control" name="comments"></textarea>
+            <button class="btn btn-default">Request</button>
+        </form>
+    </div>
+
+{{else }}
+    <p>Please <a href="/user/login">sign in</a> to request a lesson</p>
+{{/if}}

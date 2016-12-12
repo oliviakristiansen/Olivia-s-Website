@@ -1,0 +1,49 @@
+<h2>{{ data.lesson.firstName }}'s Lesson Information</h2>
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div>
+            <strong>First Name: </strong>{{ data.lesson.firstName }}
+        </div>
+        <div>
+            <strong>Last Name: </strong> {{ data.lesson.lastName }}
+        </div>
+        <div>
+            <strong>Email: </strong> {{ data.lesson.email }}
+        </div>
+        <div>
+            <strong>Telephone: </strong> {{ data.lesson.telephone }}
+        </div>
+        <div>
+            <strong>Instrument: </strong> {{ data.lesson.type }}
+        </div>
+        <div>
+            <strong>Length: </strong> {{ data.lesson.length }}
+        </div>
+        <div>
+            <strong>Start Date: </strong> {{ data.lesson.date }}
+        </div>
+        <div>
+            <strong>Day of Week: </strong> {{ data.lesson.day }}
+        </div>
+        <div>
+            <strong>Time: </strong> {{ data.lesson.time }}
+        </div>
+        <div>
+            <strong>Reoccurring: </strong> {{ data.lesson.reoccurring }}
+        </div>
+        <div>
+            <strong>Where: </strong> {{ data.lesson.where }}
+        </div>
+        <div>
+            <strong>Comments: </strong> {{ data.lesson.comments }}
+        </div>
+
+    </div>
+
+    <a class="btn btn-warning" href ="/lesson/{{ data.lesson.id }}/edit">Edit Lesson</a>
+    <a class="btn btn-danger" href ="/lesson/{{ data.lesson.id }}/delete">Delete Lesson</a>
+    <a class="btn btn-primary" href ="/lesson">Back to Lessons</a>
+
+</div>

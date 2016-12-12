@@ -1,0 +1,40 @@
+<h2>Profile</h2>
+
+<p>Welcome, {{ data.user.username }}!</p>
+
+
+<p>Below is a list of your requests for lessons. You also should have recieved an email with the information you submitted. Thank you! </p>
+
+{{#each data.lesson }}
+    <div class="panel panel-default"
+        <div class="panel-body">
+            <div>
+                <strong>Name: </strong>{{ firstName }} {{ lastName }}</a>
+            </div>
+            <div>
+                <strong>Email: </strong>{{ email }}
+            </div>
+            <div>
+                <strong>Telephone: </strong>{{ telephone }}
+            </div>
+            <div>
+                <strong>Type: </strong>{{ type }}
+            </div>
+            <div>
+                <strong>Length: </strong>{{ length }}
+            </div>
+            <div>
+                <strong>Date: </strong>{{ date }}
+            </div>
+            <div>
+                <strong>Time: </strong>{{ time }}
+            </div>
+            <div>
+                <strong>Where: </strong>{{ where }}
+            </div>
+            <div>
+                <strong>Comments: </strong>{{ comments }}
+            </div>
+        </div>
+    </div>
+{{/each}}

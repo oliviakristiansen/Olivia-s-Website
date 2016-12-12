@@ -1,0 +1,75 @@
+<h2>Edit {{ data.lesson.firstName }}'s Lesson</h2>
+
+<form method = "POST" action="/lesson/{{ data.lesson.id }}" enctype="application/x-www-form-urlencoded">
+    <input name="_method" type="hidden" value="{{ data.method }}">
+    <div class="form-group">
+        <label for="usr">First name: </label>
+        <input class="form-control" name="firstName" type="text" value="{{data.lesson.firstName}}" >
+    </div>
+    <div class="form-group">
+        <label for="usr">Last name: </label>
+        <input class="form-control" name="lastName" type="text" value="{{data.lesson.lastName}}">
+    </div>
+    <div class="form-group">
+        <label for="email">Email Address: </label>
+        <input class="form-control" name="email" type="email" value="{{data.lesson.email}}">
+    </div>
+    <div class="form-group">
+        <label for="telephone">Telephone: </label>
+        <input class="form-control" name="telephone" type="number" value="{{data.lesson.telephone}}">
+    </div>
+    <div class="form-group">
+        <label for="type">Instrument: </label>
+        <select name="type" value="{{data.lesson.type}}">
+            <option name="violin" type="checkbox" >Violin</option>
+            <option name="viola" type="checkbox">Viola</option>
+            <option name="piano" type="checkbox">Piano</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Length of Lesson (in minutes): </label>
+        <select name="length">
+            <option value="{{data.lesson.length}}">{{data.lesson.length}}</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
+            <option value="60">60</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="date">Start Date: </label>
+        <input name="date" type="date"value="{{data.lesson.date}}">
+    </div>
+    <div class="form-group">
+        <label>Day of Week: </label>
+        <!-- <input name="day" type="text" placeholder="Day of Week"> -->
+        <select name="day">
+            <option value="{{data.lesson.day}}">{{data.lesson.day}}</option>
+            <option value="Monday's">Monday's</option>
+            <option value="Tuesday's">Tuesday's</option>
+            <option value="Wednesday's">Wednesday's</option>
+            <option value="Thursday's">Thursday's</option>
+            <option value="Friday's">Friday's</option>
+            <option value="Saturday's">Saturday's</option>
+            <option value="Sunday's">Sunday's</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Select Time: </label>
+        <input name="time" type="time"value="{{data.lesson.time}}">
+    </div>
+    <div class="form-group">
+        <label for="reoccurring">Reoccurring: </label>
+        <div action="">
+            <input type="radio" name="reoccurring" value="reoccurring" checked="checked">Yes <br>
+            <input type="radio" name="reoccurring" value="reoccurring">No <br>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="where">Where: </label>
+        <div action="">
+            <input type="radio" name="where" value="in-home" checked="checked">In-Home Lesson <br>
+            <input type="radio" name="where" value="olivia-home">Olivia-Home Lesson <br>
+        </div>
+    </div><br>
+    <button type="submit">Submit</button>
+</form>

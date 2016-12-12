@@ -1,0 +1,75 @@
+<h2>Create a new lesson</h2>
+
+<div class="container">
+    <form method = "POST" action="/lesson" enctype="application/x-www-form-urlencoded">
+        <div class="form-group">
+            <label for="usr">First name: </label>
+            <input class="form-control" name="firstName" type="text" placeholder="First Name" required>
+        </div>
+        <div class="form-group">
+            <label for="usr">Last name: </label>
+            <input class="form-control" name="lastName" type="text" placeholder="Last Name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address: </label>
+            <input class="form-control" name="email" type="email" placeholder="Email Address" required>
+        </div>
+        <div class="form-group">
+            <label for="telephone">Telephone: </label>
+            <input class="form-control" name="telephone" type="number" placeholder="Telephone Number" required>
+        </div>
+        <div class="form-group">
+            <label for="instrument">Instrument: </label>
+            <select name="type" required>
+                <option name="violin" type="checkbox">Violin</option>
+                <option name="viola" type="checkbox">Viola</option>
+                <option name="piano" type="checkbox">Piano</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Length of Lesson (in minutes): </label>
+            <select name="length">
+                <option value="30">30</option>
+                <option value="45">45</option>
+                <option value="60">60</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Start Date: </label>
+            <input name="date" type="date" placeholder="Starting Date">
+        </div>
+        <div class="form-group">
+            <label>Day of Week: </label>
+            <!-- <input name="day" type="text" placeholder="Day of Week"> -->
+            <select name="day">
+                <option value="Monday's">Monday's</option>
+                <option value="Tuesday's">Tuesday's</option>
+                <option value="Wednesday's">Wednesday's</option>
+                <option value="Thursday's">Thursday's</option>
+                <option value="Friday's">Friday's</option>
+                <option value="Saturday's">Saturday's</option>
+                <option value="Sunday's">Sunday's</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Select Time: </label>
+            <input name="time" type="time" placeholder="Time">
+        </div>
+        <div class="form-group">
+            <label for="reoccurring">Reoccurring: </label>
+            <div action="">
+                <input type="radio" name="reoccurring" value="reoccurring" checked="checked">Yes <br>
+                <input type="radio" name="reoccurring" value="reoccurring">No <br>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="where">Where: </label>
+            <div action="">
+                <input type="radio" name="where" value="in-home" checked="checked">In-Home Lesson <br>
+                <input type="radio" name="where" value="olivia-home">Olivia-Home Lesson <br>
+            </div>
+        </div>
+
+        <button class="btn btn-default">Post</button>
+    </form>
+</div>

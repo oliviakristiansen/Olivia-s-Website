@@ -6,10 +6,11 @@ var router = express.Router ();
 
 //Load the User schema object.
 var User = require ('../model/user.js');
+var Lesson = require ('../model/basic.js');
 
 //Define routes.
 router.get ('/login', function (request, response) {
-    response.render ('login');
+    response.render ('user/login');
 });
 
 //Try and find user by form data.
@@ -71,7 +72,7 @@ router.post ('/login', function (request, response) {
 // });
 
 router.get ('/help', function (request, response) {
-    response.render ('help');
+    response.render ('user/help');
 });
 
 router.post ('/help', function (request, response) {
@@ -152,7 +153,7 @@ router.post ('/help', function (request, response) {
 });
 
 router.get ('/register', function (request, response) {
-    response.render ('register');
+    response.render ('user/register');
 });
 
 router.post ('/register', function (request, response) {
@@ -271,18 +272,25 @@ router.post ('/register', function (request, response) {
 
 router.get ('/profile', function (request, response) {
 
-    console.log ('profile', request.session);
-    // response.send ('TESTING');
-    if (request.session.user)
-    response.render ('profile', {
-        data: {
-            user: request.session.user
+    Lesson.find ({}, function (error, result) {
+        // console.log ('profile', request.session);
+        // response.send ('TESTING');
+        if (error) {
+            console.error ('***ERROR registering.');
+            console.error (error);
+        }
+        else {
+            console.log ('result: ', result);
+            response.render ('user/profile', {
+                data: {
+                    user: request.session.user,
+                    lesson: result
+                }
+            });
         }
     });
-    else {
-        response.redirect ('/user/login');
-    }
 });
+
 
 router.get ('/logout', function (request, response) {
     // response.send ('Logout page');

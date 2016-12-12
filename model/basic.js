@@ -9,12 +9,15 @@ var lessonSchema = new Schema ({
     firstName: String,
     lastName: String,
     email: String,
-    tel: Number,
+    telephone: Number,
     type: String,
     length: Number,
     date: String,
+    day: String,
     time: String,
-    where: String
+    reoccurring: String,
+    where: String,
+    comments: String
 });
 
 //Create the model object
