@@ -124,5 +124,17 @@ router.get ('/bio', function (request, response) {
     response.render ('bio');
 });
 
+//---------------------------------------------
+//Route to load the Angular UI Frontend.
+router.get ('/admin', function (request, response) {
+    // response.send ('-This is the admin page with angular');
+
+    //Load the angular home partial.
+    response.render ('home', {
+        //Override the default index.hbs and use the index-angular.hbs
+        layout: 'index-angular'
+    });
+});
+
 //Export the module.
 module.exports = router;

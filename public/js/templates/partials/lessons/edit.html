@@ -1,0 +1,53 @@
+<!-- <h2>Lesson create/edit page</h2> -->
+
+<form ng-submit="lessonController.create (lessonController.lesson._id)">
+    <div>
+        <label>First Name: </label>
+        <input ng-model="lessonController.lesson.firstName">
+    </div>
+    <div>
+        <label>Last Name: </label>
+        <input ng-model="lessonController.lesson.lastName">
+    </div>
+    <div>
+        <label>Email: </label>
+        <input ng-model="lessonController.lesson.email">
+    </div>
+    <div>
+        <label>Telephone: </label>
+        <input ng-model="lessonController.lesson.telephone">
+    </div>
+    <div>
+        <label>Instrument: </label>
+        <input ng-model="lessonController.lesson.type">
+    </div>
+    <div>
+        <label>Length: </label>
+        <input ng-model="lessonController.lesson.length">
+    </div>
+    <div>
+        <label>Starting Date: </label>
+        <input ng-model="lessonController.lesson.date">
+    </div>
+    <div>
+        <label>Day: </label>
+        <input ng-model="lessonController.lesson.day">
+    </div>
+    <div>
+        <label>Time: </label>
+        <input ng-model="lessonController.lesson.time">
+    </div>
+    <div>
+        <label>Reoccurring: </label>
+        <input ng-model="lessonController.lesson.reoccurring">
+    </div>
+    <div>
+        <label>Where: </label>
+        <input ng-model="lessonController.lesson.where">
+    </div>
+    <div>
+        <label>Comments: </label>
+        <input ng-model="lessonController.lesson.comments">
+    </div>
+    <button>{{ lessonController.mode }}</button>
+</form>

@@ -1,0 +1,23 @@
+<h2>Lesson List</h2>
+
+<button ng-click="lessonController.goToPage ('lesson-create')">Create Lesson</button>
+<button ng-click="lessonController.read ()">View Lessons</button>
+
+<ul>
+    <li ng-repeat="lesson in lessonController.list">
+        <table border="1">
+            <tr>
+                <th>Name: </th>
+                <td><a href="#" ng-click="lessonController.goToPage('lesson-view', {id: lesson._id})">{{ lesson.firstName }} {{ lesson.lastName }}</a></td>
+            </tr>
+            <tr>
+                <th>Day: </th>
+                <td>{{ lesson.day }}</td>
+            </tr>
+            <tr>
+                <th>Time: </th>
+                <td>{{ lesson.time }}</td>
+            </tr>
+        </table>
+    </li>
+</ul>
