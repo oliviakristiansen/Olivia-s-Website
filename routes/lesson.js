@@ -71,8 +71,14 @@ router.get ('/',function (request, response) {
     //         });
     //     }
     // });
+
+    var filter = {};
+    if (request.body.date) {
+        filter.date = request.body.date;
+    }
+
     console.log ('TESTING', request.body.date);
-    Lesson.find ({date: request.body.date}).sort('date').sort('time').exec(function (error, result) {
+    Lesson.find (filter).sort('date').sort('time').exec(function (error, result) {
         if (error) {
             var errorMessage = 'Unable to sort lessons';
             console.log ('***ERROR: ' + errorMessage);
