@@ -1,0 +1,25 @@
+<h2>{{data.user.username}}'s information</h2>
+
+<a class="btn btn-primary" href="/update/{{data.user.id}}/edit">Edit User</a>
+<a class="btn btn-primary" href="/update/{{data.user.id}}/delete">Delete User</a>
+
+<div>
+    <div>
+        <strong>Name </strong>{{data.user.username}}
+    </div>
+    <div>
+        <strong>E-Mail</strong> {{data.user.email}}
+    </div>
+    <div>
+        <strong>Date Created</strong> {{data.user.createdOn}}
+    </div>
+    <div>
+        <strong>Last Updated</strong> {{data.user.updatedOn}}
+    </div>
+    <div>
+        <strong>Type</strong> {{data.user.type}}
+    </div>
+    <div>
+        <strong>Status</strong> {{data.user.status}}
+    </div>
+</div>

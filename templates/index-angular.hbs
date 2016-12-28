@@ -3,16 +3,26 @@
     <head>
         <meta charset="utf-8">
         <title>Olivia's Website</title>
+
+        <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="/css/style.less" rel="stylesheet" type="text/less" />
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+
+        <script src="/lib/less/dist/less.js"></script>
+        <script src="/lib/jquery/dist/jquery.js"></script>
+        <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
     </head>
     <body ng-app='App'>
-        <h1>Olivia Lemmelin Webpage</h1>
 
-        <nav>
-            <a href="/admin/#/">Home</a>
-            <a href="/admin/#/bio">Bio</a>
-            <a href="/admin/#/lesson">Lessons</a>
-
-            <a href="/">Back</a>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/admin/#/">Home</a></li>
+                    <li><a href="/admin/#/lesson">Lessons</a></li>
+                    <li><a href="/update">Users</a></li>
+                    <li><a href="/">Full Site</a></li>
+                </ul>
+            </div>
         </nav>
 
         <div ui-view></div>

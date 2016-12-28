@@ -14,7 +14,7 @@ router.get ('/', function (request, response) {
 });
 
 //This route recieves data from the lesson form.
-router.post ('/lesson', function (request, response) {
+router.post ('/', function (request, response) {
     // response.send ('You created a lesson!');
 
     //Create the parts of the email.
@@ -28,19 +28,13 @@ router.post ('/lesson', function (request, response) {
     ]
 
     var emailTitle = 'You have requested a lesson with Olivia!';
-    var emailBody = 'Thanks for requesting a lesson ' + request.body.firstName + '! She is super excited to teach you. She will review your information and will email you directly. Thanks!'
+    var emailBody = 'Thanks for requesting a lesson ' + request.body.firstName + '! She is super excited to teach you. She will review your information and will email you directly. Thanks! ' + JSON.stringify(request.body);
 
+    console.log ('HEREEEE');
     //Create a new lesson from the data sent down by form or API post.
     var requestLesson = Lesson (request.body);
     console.log (request.body);
 
-    requestLesson.save (function (error, result) {
-        //Check for errors.
-        if (error) {
-            console.error ('***ERROR: Unable to save the lesson.');
-            console.error (error);
-        }
-        else {
 
             var lesson = Lesson (request.body)
 
@@ -53,12 +47,13 @@ router.post ('/lesson', function (request, response) {
             var httpRequest = require ('request');
 
             //Make a request to the Sendgrid API service.
-            httpRequest.post (
+            httpRequest (
                 //Pass the configuration object with where to make the call.
                 {
+                    method: 'POST',
                     url: 'https://api.sendgrid.com/v3/mail/send',
                     headers: {
-                        'Authorization': 'Bearer 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',
+                        'Authorization': 'Bearer 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',
                         'Content-Type': 'application/json'
                     },
 
@@ -82,22 +77,30 @@ router.post ('/lesson', function (request, response) {
                             }
                         ]
                     }
+                },
+                function (error, req, body) {
+                    if (error) {
+                        console.error ('***ERROR', error);
+                        console.error ('***ERROR', body);
+                        response.error ('There was a problem sending the request email.');
+                        return;
+
+                    }
+                    console.log ('request reply: ', req.statusCode);
+                    //.flash and .redirect should be paired together because you want the
+                    //flash message to show up when you redirect to the page.
+                    request.flash ('success', 'Lesson was requested.');
+                    response.redirect ('/lesson');
                 }
             )
             //.on is chained so you only need one ; at the end of all the .on calls.
-            .on ('response', function (requestReply) {
-                console.log ('request reply: ', requestReply.statusCode);
-                console.log ('request reply: ');
-                //.flash and .redirect should be paired together because you want the
-                //flash message to show up when you redirect to the page.
-                request.flash ('success', 'Lesson was requested.');
-                response.redirect ('/lesson');
-
-            })
-            .on ('error', function () {
-                response.error ('There was a problem sending the request email.');
-            })
-            ;
+            // .on ('response', function (requestReply) {
+            //
+            //
+            // })
+            // .on ('error', function () {
+            // })
+            // ;
             // if (request.sendJson) {
             //     response.json ({
             //         message: 'New lesson was saved.'
@@ -110,8 +113,8 @@ router.post ('/lesson', function (request, response) {
             //     //Redirect back to the lesson page.
             //     response.redirect ('/lessons');
             // }
-        }
-    });
+
+
 });
 
 //Below moved to lesson route.
@@ -124,6 +127,9 @@ router.get ('/bio', function (request, response) {
     response.render ('bio');
 });
 
+router.get ('/gallery', function (request, response) {
+    response.render ('gallery');
+});
 //---------------------------------------------
 //Route to load the Angular UI Frontend.
 router.get ('/admin', function (request, response) {

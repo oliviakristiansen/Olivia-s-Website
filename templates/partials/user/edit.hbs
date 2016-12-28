@@ -1,0 +1,23 @@
+<h2>{{data.title}}</h2>
+
+<form method="POST" action="/update/{{ data.user.id }}" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" name="_method" value="{{data.method}}">
+    <input type="text" name="username" placeholder="username" value="{{data.user.username}}" required>
+    <input type="email" name="email" placeholder="E-mail" value="{{data.user.email}}"required>
+    <input type="password" name="password" placeholder="Password" value="{{data.user.password}}"required>
+    <input type="text" name="createdOn" placeholder="Created On" value="{{data.user.createdOn}}">
+    <input type="text" name="updatedOn" placeholder="Updated On" value="{{data.user.updatedOn}}">
+    <div>
+        <strong>Type</strong>
+        <p><input type="radio" name="type" value="admin">Admin</p>
+        <p><input type="radio" name="type" value="customer">Customer</p></li>
+    </div>
+    <div>
+        <strong>Status</strong>
+        <p><input type="radio" name="status" value="active">Active</p>
+        <p><input type="radio" name="status" value="disabled">Disabled</p></li>
+        <p><input type="radio" name="status" value="pending">Pending</p></li>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>

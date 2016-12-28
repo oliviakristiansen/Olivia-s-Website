@@ -27,13 +27,14 @@ var Lesson = require ('../model/basic.js')
 //---CRUD operations----
 
 //Create
-router.get ('/create', function (request, response) {
-    // response.send ('You are on the create page!');
-    response.render ('lessons/create')
-});
+// router.get ('/create', function (request, response) {
+//     // response.send ('You are on the create page!');
+//     response.render ('lessons/create')
+// });
 
 router.post ('/', function (request, response) {
     var newLesson = Lesson (request.body);
+    // newLesson.owner = request.session.user;
 
     newLesson.save (function (error) {
         if (error) {
@@ -41,6 +42,7 @@ router.post ('/', function (request, response) {
             console.log ('***ERROR: ' + errorMessage);
         }
         else {
+            // console.log ('HELP', request.sendJson);
             if (request.sendJson == true) {
                 response.json ({
                     message: 'New lesson was saved.'
@@ -75,9 +77,10 @@ router.get ('/',function (request, response) {
     var filter = {};
     if (request.body.date) {
         filter.date = request.body.date;
+        // filter.email = request.session.user.email;
     }
 
-    console.log ('TESTING', request.body.date);
+    // console.log ('TESTING', request.body.date);
     Lesson.find (filter).sort('date').sort('time').exec(function (error, result) {
         if (error) {
             var errorMessage = 'Unable to sort lessons';

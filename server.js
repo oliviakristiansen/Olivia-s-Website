@@ -137,8 +137,13 @@ server.use ('/', basicRoutes);
 var lessonRoutes = require ('./routes/lesson.js');
 server.use ('/lesson', lessonRoutes);
 
-var userRoutes = require ('./routes/user.js');
+//Connect user login/register/help route.
+var userRoutes = require ('./routes/user/user.js');
 server.use ('/user', userRoutes);
+
+//Connect user edit/delete route.
+var updateRoutes = require ('./routes/user/update.js');
+server.use ('/update', updateRoutes);
 
 //Test server route: tests the database query to see if it works.
 server.get ('/test', function (request, response) {

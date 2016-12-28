@@ -18,6 +18,7 @@ namespace App {
             this.stateService = $state;
             this.stateParamsService = $stateParams;
 
+
             // This is pulling in the information and you can read it
             //by the id.
             if (this.stateParamsService.id) {
@@ -53,6 +54,7 @@ namespace App {
 
         public read (id) {
             console.log ('Lessons have been read.', this.list);
+            console.log ('Here is the id: ', id);
             this.lessonService.read (id)
                 .success ((response) => {
                     if (id) {
