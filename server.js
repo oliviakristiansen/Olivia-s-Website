@@ -62,7 +62,16 @@ server.use (flash());
 //Set a global function that will be run before any of our other routes are run.
 server.use (function (request, response, next) {
     //Set the local data in the template to use the user session data.
-    response.locals.user = request.session.user;
+    // response.locals.user = request.session.user;
+    var user = request.session.user;
+    if (user) {
+        response.locals.user = user;
+
+        //Check if we have an admin user.
+        if (user && user.type == 'admin') {
+            user.admin = true;
+        }
+    }
 
     //Set the flash object to be set and used before running any other routes or functions.
     response.locals.message = request.flash ();

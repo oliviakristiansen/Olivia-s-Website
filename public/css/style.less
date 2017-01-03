@@ -1,5 +1,10 @@
+@color-01: #669683;
+@color-02: lightgray;
+@color-03: black;
+@color-04: #341f25;
+
 body#bio {
-    background-color: lightgray;
+    background-color: @color-02;
     font-family: 'Josefin Sans';
     font-size: 18px;
     padding-left: 10px;
@@ -7,24 +12,31 @@ body#bio {
 
 }
 body#gallery {
-    background-color: lightgray;
+    background-color: @color-02;
     font-family: 'Josefin Sans';
     font-size: 18px;
     padding-left: 10px;
     padding-right: 10px;
+    img {
+        display: block;
+        margin: auto;
+        padding: 10px;
+    }
 
 }
 
 body#home {
     background-image: url('/images/A6643766.jpg');
+    background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     height: 100%;
     width: 100%;
 }
 
 body#lessons {
-    background-color: lightgray;
+    background-color: @color-02;
     font-family: 'Josefin Sans';
     font-size: 18px;
     padding: 10px;
@@ -43,12 +55,54 @@ body#lessons {
 
 body.login {
     background-image: url('/images/IMG_1514.jpg');
+    background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     .container {
         opacity: 0.5;
         input {
-            background-color: black;
+            background-color: @color-03;
+            width: 300px;
+        }
+        button {
+            float: left;
+            width: 300px;
+        }
+        p {
+            float: left;
+        }
+    }
+}
+
+body.profile {
+    background-color: @color-02;
+    font-family: 'Josefin Sans';
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+body.users {
+    background-color: @color-02;
+    font-family: 'Josefin Sans';
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+        a.btn-primary {
+            background-color: @color-01;
+        }
+}
+
+body#register {
+    background-image: url('/images/A6643767.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    .container {
+        opacity: 0.5;
+        input {
+            background-color: @color-03;
             width: 300px;
         }
         button {
@@ -58,14 +112,16 @@ body.login {
     }
 }
 
-body#register {
-    background-image: url('/images/A6643767.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+body.reset {
+    background-color: @color-02;
+    font-family: 'Josefin Sans';
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
     .container {
         opacity: 0.5;
         input {
-            background-color: black;
+            background-color: @color-03;
             width: 300px;
         }
         button {
@@ -76,7 +132,7 @@ body#register {
 }
 
 button#load {
-    background-color: #669683;
+    background-color: @color-01;
 
 }
 
@@ -88,13 +144,13 @@ div.container {
 div.edit {
     font-size: 20px;
     opacity: 0.5;
-    color: black;
+    color: @color-03;
     font-family: 'Josefin Sans';
     padding: 70px;
 }
 
 div#lessons {
-    background-color: #669683;
+    background-color: @color-01;
     text-align: center;
 }
 
@@ -105,7 +161,7 @@ div.list {
 div.lessons {
     font-size: 20px;
     opacity: 0.5;
-    color: black;
+    color: @color-03;
     font-family: 'Josefin Sans';
     padding-left: 50px;
 }
@@ -117,7 +173,7 @@ div.select {
 div.view {
     font-size: 20px;
     opacity: 0.5;
-    color: black;
+    color: @color-03;
     font-family: 'Josefin Sans';
     padding-left: 70px;
 }
@@ -125,7 +181,7 @@ div.view {
 h2 {
     font-size: 80px;
     opacity: 0.5;
-    color: black;
+    color: @color-03;
     font-family: 'Josefin Sans';
     padding-top: 70px;
     padding-left: 70px;
@@ -135,15 +191,12 @@ h2 {
 .homepage {
     height: 100vh;
     background-image: url('/images/A6643766.jpg');
+    background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
 }
 
-@media only screen and (max-width: 767px) {
-    body {
-        padding-top: 300px;
-    }
-}
 
 nav {
     opacity: 0.5;
@@ -151,18 +204,58 @@ nav {
     font-size: 18px;
     text-align: center;
     a:hover {
-        text: #4f7f6d;
+        text: @color-01;
     }
 }
 
 p.admin {
     font-size: 20px;
     opacity: 0.5;
-    color: black;
+    color: @color-03;
     font-family: 'Josefin Sans';
     padding-left: 70px;
 }
 
+
 p#please {
     text-align: center;
+}
+
+//----------------------------------
+//Mobile responsive area
+@large-size: 1024px;
+@medium-size: 768px;
+@small-size: 640px;
+
+@media screen and (max-width: @medium-size) {
+    nav {
+        // border: 5px solid red !important;
+        a {
+            float: left;
+            margin-right: 0;
+        }
+    }
+    body#lessons {
+        p {
+            padding-left: 2px;
+            padding-right: 2px;
+        }
+        div.list {
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+    }
+}
+
+@media screen and (max-width: @small-size) {
+    nav {
+        a {
+            font-size: 14px;
+        }
+    }
+    h2 {
+        font-size: 50px;
+        padding-left: 20px;
+    }
 }

@@ -7,18 +7,27 @@
         </div>
     {{/if}}
 
-    <p>Olivia offers violin, viola and piano lessons to all ages! If you are interested in a lesson with Olivia, please login or register so you are able to fill out some information to get you started with lessons. Once you fill out that information, you will recieve a confirmation email. Olivia will also recieve an email with your information and she will get back to you as soon as she can! Thank you and happy practicing!</p>
+    <p>Olivia offers violin, viola and piano lessons to all ages! If you are interested in a lesson with Olivia, please login or register so you are able to fill out some information to get you started with lessons. Once you fill out that information, you will recieve a confirmation email. Olivia will also receive an email with your information and she will get back to you as soon as she can! Thank you and happy practicing!</p>
 
 
     <!-- Create button below is only for admin -->
     <!-- <a class="btn btn-primary" href="/lesson/create">New Lesson</a> -->
-    <div class="select">Select a date below to view the current taken lesson times.</div>
+    <div class="select">Select a day of the week below to view the current taken lesson times.</div>
     <div class="container">
         <form method = "POST" action="/lesson" enctype="application/x-www-form-urlencoded">
             <input name="_method" type="hidden" value="GET">
             <div class="form-group">
-                <label for="date">Date: </label>
-                <input name="date" type="date">
+                <label for="day">Day: </label>
+                <select name="day">
+                    <option value=""></option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
                 <button class="btn btn-default" type="submit" id="load">Load</button>
                 <div class="list">
                     <!-- This list of names will only be for admin. User will just see unavailable -->
@@ -26,7 +35,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body" id="lessons">
                             <div>
-                                <strong>Name: </strong><a href ="/lesson/{{ id }}">{{ firstName }} {{ lastName}}</a>
+                                <!-- <strong>Name: </strong><a href ="/lesson/{{ id }}">{{ firstName }} {{ lastName}}</a> -->
                             </div>
                             <div>
                                 <h1><strong>{{ day }}</strong></h1>
@@ -47,10 +56,6 @@
         </form>
     </div>
 
-
-
-
-
     <!-- Requesting a lesson will mainly be for user -->
     {{#if user }}
     <div class="select">Please enter the following information to request a lesson.</div>
@@ -66,7 +71,7 @@
                     <input class="form-control" name="lastName" type="text" placeholder="Last Name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email Address: </label>
+                    <label for="email">Email Address (please use the email address used when you registered for the site):</label>
                     <input class="form-control" name="email" type="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-group">

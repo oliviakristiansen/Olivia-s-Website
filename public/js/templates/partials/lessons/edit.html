@@ -23,28 +23,32 @@
             <input ng-model="lessonController.lesson.type">
         </div>
         <div>
-            <label>Length: </label>
+            <label>Length (30, 45, 60): </label>
             <input ng-model="lessonController.lesson.length">
         </div>
-        <div>
+        <!-- <div>
             <label>Starting Date: </label>
             <input ng-model="lessonController.lesson.date">
-        </div>
+        </div> -->
         <div>
-            <label>Day: </label>
+            <label>Day (Monday-Sunday): </label>
             <input ng-model="lessonController.lesson.day">
         </div>
         <div>
-            <label>Time: </label>
-            <input ng-model="lessonController.lesson.time">
+            <label>Time (ex. 4:00 PM): </label>
+            <input ng-model="lessonController.lesson.time" type="time">
         </div>
         <div>
-            <label>Reoccurring: </label>
+            <label>Reoccurring (Yes or No): </label>
             <input ng-model="lessonController.lesson.reoccurring">
         </div>
         <div>
-            <label>Where: </label>
+            <label>Where (In-home or Olivia-home): </label>
             <input ng-model="lessonController.lesson.where">
+        </div>
+        <div>
+            <label>Status (pending, active): </label>
+            <input ng-model="lessonController.lesson.status">
         </div>
         <div>
             <label>Comments: </label>

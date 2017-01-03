@@ -12,7 +12,8 @@ var userSchema = new Schema ({
     type: String,
     createdOn: String,
     updatedOn: String,
-    status: String
+    status: String,
+    imageUrl: String
 });
 
 //Take the user schema object and create a user model object for

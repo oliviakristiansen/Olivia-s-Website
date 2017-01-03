@@ -4,8 +4,16 @@ var express = require ('express');
 //Grab the url router from express.
 var router = express.Router ();
 
+
 //Load in the Lesson schema object.
 var Lesson = require ('../model/basic.js')
+
+//Bring in the multer library to handle the multi part upload files.
+var multer = require ('multer');
+
+//Create a multer function to handle the multi part files.
+//need to make a temp folder in project.
+var processUploadFile = multer ({ dest: './temp'});
 
 router.get ('/', function (request, response) {
     // response.send ('This is the home page');
@@ -32,20 +40,32 @@ router.post ('/', function (request, response) {
 
     console.log ('HEREEEE');
     //Create a new lesson from the data sent down by form or API post.
+
+    request.body.status = 'pending';
+    request.body.owner = request.session.user;
+
     var requestLesson = Lesson (request.body);
-    console.log (request.body);
+    // requestLesson.status = 'pending';
+    // requestLesson.owner = request.session.user.id;
 
+    console.log ('user: ', request.session.user);
+    console.log ('data: ', request.body);
 
-            var lesson = Lesson (request.body)
-
+    requestLesson.save (function (error, lesson) {
+        if (error) {
+            console.error ('***ERROR: Unable to save the lesson.');
+            console.error (error);
+        }
+        else {
             //Link the lesson to the user that is currently logged in.
             var user = request.session.user;
             lesson.owner = user;
 
             //Send a confirmation email.
-                //Load in the http request module.
+            //Load in the http request module.
             var httpRequest = require ('request');
 
+            console.log ('Lesson has been saved to db: ', lesson);
             //Make a request to the Sendgrid API service.
             httpRequest (
                 //Pass the configuration object with where to make the call.
@@ -77,43 +97,45 @@ router.post ('/', function (request, response) {
                             }
                         ]
                     }
-                },
-                function (error, req, body) {
-                    if (error) {
-                        console.error ('***ERROR', error);
-                        console.error ('***ERROR', body);
-                        response.error ('There was a problem sending the request email.');
-                        return;
-
-                    }
-                    console.log ('request reply: ', req.statusCode);
-                    //.flash and .redirect should be paired together because you want the
-                    //flash message to show up when you redirect to the page.
-                    request.flash ('success', 'Lesson was requested.');
-                    response.redirect ('/lesson');
                 }
+                // function (error, req, body) {
+                //     if (error) {
+                //         console.error ('***ERROR', error);
+                //         console.error ('***ERROR', body);
+                //         return;
+                //
+                //     }
+                //     console.log ('request reply: ', req.statusCode);
+                //     //.flash and .redirect should be paired together because you want the
+                //     //flash message to show up when you redirect to the page.
+                // }
             )
-            //.on is chained so you only need one ; at the end of all the .on calls.
-            // .on ('response', function (requestReply) {
-            //
-            //
-            // })
-            // .on ('error', function () {
-            // })
-            // ;
-            // if (request.sendJson) {
-            //     response.json ({
-            //         message: 'New lesson was saved.'
-            //     });
-            // }
-            // else {
-            //     //Add a flash message of our success.
-            //     request.flash ('success', 'Lesson was requested.');
-            //
-            //     //Redirect back to the lesson page.
-            //     response.redirect ('/lessons');
-            // }
+            // .on is chained so you only need one ; at the end of all the .on calls.
+            .on ('response', function (requestReply) {
+                console.log ('request reply: ', requestReply.statusCode);
+                request.flash ('success', 'Lesson was requested.');
+                response.redirect ('/lesson');
 
+            })
+            .on ('error', function () {
+                response.error ('There was a problem sending the request email.');
+            })
+            ;
+        }
+    })
+    // if (request.sendJson) {
+    //     response.json ({
+    //         message: 'New lesson was saved.'
+    //     });
+    // }
+    // else {
+    //     //Add a flash message of our success.
+    //     request.flash ('success', 'Lesson was requested.');
+    //
+    //     //Redirect back to the lesson page.
+    //     response.redirect ('/lessons');
+    //
+    // }
 
 });
 
@@ -127,8 +149,31 @@ router.get ('/bio', function (request, response) {
     response.render ('bio');
 });
 
+//Be able to upload pictures here.
 router.get ('/gallery', function (request, response) {
     response.render ('gallery');
+});
+
+//Create a route to handle the received uploaded file.
+    //imageFile is from the gallery.hbs file.
+router.post ('/gallery', processUploadFile.single ('imageFile'), function (request, response) {
+    console.log ('File: ', request.file);
+    console.log ('File: ', request.body);
+    console.log ('File: ', request.file.path);
+
+    var fs = require ('fs-extra');
+
+    var source = request.file.path;
+    //If we look in the terminal we see 'originalname' in the request.file.
+    var destination = './public/images/upload/' + request.file.originalname;
+
+    fs.move (source, destination, function (error) {
+
+        //Delete the old temporary file.
+        fs.remove (source, function (error) {
+            response.redirect ('/gallery');
+        });
+    });
 });
 //---------------------------------------------
 //Route to load the Angular UI Frontend.

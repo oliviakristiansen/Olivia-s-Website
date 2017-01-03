@@ -32,6 +32,13 @@ namespace App {
             else if (this.stateService.current.name == 'lesson-create') {
                 this.mode = 'create';
             }
+
+            // NOTE: Temporary
+            // this.lesson = {
+            //     firstName: 'Olivia',
+            //     lastName: 'Bob',
+            //     email: 'test@bob.com'
+            // }
         }
 
         public create (id) {

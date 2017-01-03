@@ -1,9 +1,10 @@
-<h2>Profile</h2>
+<body class="profile">
+<h2>profile</h2>
 
 <p>Welcome, {{ data.user.username }}!</p>
 
 
-<p>Below is a list of your requests for lessons. You also should have recieved an email with the information you submitted. Thank you! </p>
+<p>Below is a list of your current lesson information. If you do not have a lesson time yet, be sure to fill out the form on the lesson page to request a lesson time with Olivia! Thank you! </p>
 
 {{#each data.lesson }}
     <div class="panel panel-default"
@@ -38,3 +39,4 @@
         </div>
     </div>
 {{/each}}
+</body>

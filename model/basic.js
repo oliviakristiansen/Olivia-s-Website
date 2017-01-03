@@ -18,7 +18,9 @@ var lessonSchema = new Schema ({
     reoccurring: String,
     where: String,
     comments: String,
-    owner: { type: Schema.Types.ObjectId, ref: 'User'}
+    status: String,
+    owner: { type: Schema.Types.ObjectId, ref: 'User'},
+    imageUrl: String
 });
 
 //Create the model object
