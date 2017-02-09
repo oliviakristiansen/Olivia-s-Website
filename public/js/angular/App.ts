@@ -14,13 +14,13 @@ namespace App {
                     controller: App.HomeController,
                     controllerAs: 'homeController'
                 })
-                .state ('bio', {
-                    url: '/bio',
-                    // template: 'Here we are at bio.'
-                    templateUrl: '/js/templates/partials/bio.html',
-                    controller: App.BioController,
-                    controllerAs: 'bioController'
-                })
+                // .state ('bio', {
+                //     url: '/bio',
+                //     // template: 'Here we are at bio.'
+                //     templateUrl: '/js/templates/partials/bio.html',
+                //     controller: App.BioController,
+                //     controllerAs: 'bioController'
+                // })
                 .state ('lesson', {
                     url: '/lesson',
                     // template: 'Here we are at lessons.'

@@ -112,7 +112,7 @@ var mongoClient = require ('mongodb').MongoClient;
 //Create a reference to the database.
 global.db;
 
-mongoClient.connect ('mongodb://localhost:27017/olivia_website_database', function (error, database) {
+mongoClient.connect ('mongodb://bobross:password@ds145828.mlab.com:45828/trainer_database', function (error, database) {
     if (error) {
         console.error ('***ERROR: Unable to connect to the mongo database.');
         console.error (error);
@@ -172,7 +172,7 @@ server.get ('/test', function (request, response) {
 var mongoose = require ('mongoose');
 
 //Connect mongoose to the mongo db server.
-mongoose.connect ('mongodb://localhost:27017/olivia_website_database');
+mongoose.connect ('mongodb://bobross:password@ds145828.mlab.com:45828/trainer_database');
 
 //Set the mongoose promise library to use.
 mongoose.Promise = require ('bluebird');

@@ -17,15 +17,22 @@
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
-                <!-- <div class="navbar-header"> -->
-                    <!-- <a class="navbar-brand" href="#">Olivia Lemmelin</a> -->
-                <!-- </div> -->
+                <!-- <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Olivia Lemmelin</a>
+                </div> -->
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href = "/">Home</a></li>
                     <li><a href = "/bio">Bio</a></li>
                     <li><a href = "/lesson">Lessons</a></li>
-                    <li><a href = "/gallery">Gallery</a></li>
-                {{#if user.admin}}
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" area-expanded="false">Media<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/video">Videos</a><li>
+                            <li><a href="/gallery">Gallery</a><li>
+                            <li><a href="/performance">Performances</a><li>
+                        </ul>
+                    <li><a href = "/contact">Contact</a></li>
+
+                <!-- {{#if user.admin}}
                     <li><a href = "/admin/#/">Admin</a></li>
                 {{/if}}
 
@@ -35,7 +42,7 @@
                 {{else}}
                     <li><a href = "/user/login">Login</a></li>
                     <li><a href = "/user/register">Register</a></li>
-                {{/if}}
+                {{/if}} -->
                 </ul>
             </div>
         </nav>

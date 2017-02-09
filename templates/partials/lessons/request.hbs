@@ -1,5 +1,4 @@
 <body id="lessons">
-    <h2>lessons</h2>
 
     {{#if message.success}}
         <div class = "success notice">
@@ -7,12 +6,18 @@
         </div>
     {{/if}}
 
-    <p>Olivia offers violin, viola and piano lessons to all ages! If you are interested in a lesson with Olivia, please login or register so you are able to fill out some information to get you started with lessons. Once you fill out that information, you will recieve a confirmation email. Olivia will also receive an email with your information and she will get back to you as soon as she can! Thank you and happy practicing!</p>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h4>lessons</h4>
+            <!-- <p>Olivia offers violin, viola and piano lessons to all ages! If you are interested in a lesson with Olivia, please login or register so you are able to fill out some information to get you started with lessons. Once you fill out that information, you will recieve a confirmation email. Olivia will also receive an email with your information and she will get back to you as soon as she can! Thank you and happy practicing!</p> -->
+            <p>Olivia has been teaching lessons to students of all ages for over 5 years and is looking forward to teaching her future students. She is very passionate about each and every one of her students and individulizes the lessons based on the students level. Olivia is currently accepting students for violin, viola and piano lessons! If you are interested in a lesson, please contact her for pricing and available times. Thank you and happy practicing!
+        </div>
+    </div>
 
 
     <!-- Create button below is only for admin -->
     <!-- <a class="btn btn-primary" href="/lesson/create">New Lesson</a> -->
-    <div class="select">Select a day of the week below to view the current taken lesson times.</div>
+    <!-- <div class="select">Select a day of the week below to view the current taken lesson times.</div>
     <div class="container">
         <form method = "POST" action="/lesson" enctype="application/x-www-form-urlencoded">
             <input name="_method" type="hidden" value="GET">
@@ -29,14 +34,14 @@
                     <option value="Sunday">Sunday</option>
                 </select>
                 <button class="btn btn-default" type="submit" id="load">Load</button>
-                <div class="list">
+                <div class="list"> -->
                     <!-- This list of names will only be for admin. User will just see unavailable -->
-                    {{#each data.lessons }}
+                    <!-- {{#each data.lessons }}
                     <div class="panel panel-default">
                         <div class="panel-body" id="lessons">
-                            <div>
+                            <div> -->
                                 <!-- <strong>Name: </strong><a href ="/lesson/{{ id }}">{{ firstName }} {{ lastName}}</a> -->
-                            </div>
+                            <!-- </div>
                             <div>
                                 <h1><strong>{{ day }}</strong></h1>
                             </div>
@@ -54,10 +59,10 @@
 
             </div>
         </form>
-    </div>
+    </div> -->
 
     <!-- Requesting a lesson will mainly be for user -->
-    {{#if user }}
+    <!-- {{#if user }}
     <div class="select">Please enter the following information to request a lesson.</div>
 
         <div class="container">
@@ -127,9 +132,9 @@
                     <textarea class="form-control" name="comments"></textarea>
                 <button class="btn btn-default">Request</button>
             </form>
-        </div>
+        </div> -->
 
-    {{else }}
+    <!-- {{else }}
         <p id="please">Please <a href="/user/login">sign in</a> to request a lesson</p>
-    {{/if}}
+    {{/if}} -->
 </body>

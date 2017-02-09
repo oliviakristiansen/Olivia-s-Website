@@ -149,6 +149,17 @@ router.get ('/bio', function (request, response) {
     response.render ('bio');
 });
 
+router.get ('/video', function (request, response) {
+    response.render ('video');
+});
+
+router.get ('/performance', function (request, response) {
+    response.render ('performance');
+});
+router.get ('/contact', function (request, response) {
+    response.render ('contact');
+});
+
 //Be able to upload pictures here.
 router.get ('/gallery', function (request, response) {
     response.render ('gallery');

@@ -4,12 +4,55 @@
 @color-04: #341f25;
 
 body#bio {
-    background-color: @color-02;
+    background-image: url('/images/A6643767.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     font-family: 'Josefin Sans';
     font-size: 18px;
-    padding-left: 10px;
-    padding-right: 10px;
+    .panel-default {
+        opacity: 0.8;
+        margin-left: 30px;
+        margin-right: 48%;
+        background-color: @color-02;
+        margin-top: 80px;
+        h3 {
+            padding-top: 30px;
+            font-size: 80px;
+            opacity: 0.7;
+            color: #8c4141;
+            text-align: center;
+        }
+    }
+}
 
+body#contact {
+    background-color: @color-02;
+    h4 {
+        color: #8c4141;
+    }
+}
+body#video {
+    background-color: @color-02;
+    h4 {
+        color: #8c4141;
+        padding-top: 100px;
+    }
+    p {
+        font-family: 'Josefin Sans';
+        text-align: center;
+    }
+}
+// iframe {
+//     margin-left: 3%;
+// }
+body#performance {
+    background-color: @color-02;
+    h4 {
+        color: #8c4141;
+        padding-top: 100px;
+    }
 }
 body#gallery {
     background-color: @color-02;
@@ -33,10 +76,25 @@ body#home {
     background-size: cover;
     height: 100%;
     width: 100%;
+    .panel-default {
+        opacity: 0.8;
+        margin-left: 30px;
+        margin-right: 52%;
+        background-color: @color-02;
+        margin-top: 80px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+    }
 }
 
 body#lessons {
-    background-color: @color-02;
+    // background-color: @color-02;
+    background-image: url('/images/IMG_1514.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     font-family: 'Josefin Sans';
     font-size: 18px;
     padding: 10px;
@@ -45,13 +103,26 @@ body#lessons {
         padding-left: 200px;
     }
     p {
-        padding-right: 200px;
-        padding-left: 200px;
+        padding-right: 50px;
+        padding-left: 50px;
     }
     p#enter {
         padding-right: 400px;
     }
+    .panel-default {
+        opacity: 0.7;
+        margin-left: 100px;
+        margin-right: 100px;
+        margin-top: 100px;
+    }
 }
+
+body#gallery {
+    h4 {
+        padding-top: 100px;
+    }
+}
+
 
 body.login {
     background-image: url('/images/IMG_1514.jpg');
@@ -179,14 +250,24 @@ div.view {
 }
 
 h2 {
-    font-size: 80px;
-    opacity: 0.5;
-    color: @color-03;
+    font-size: 100px;
+    opacity: 0.8;
+    color: #8c4141;
     font-family: 'Josefin Sans';
-    padding-top: 70px;
+    // padding-top: 110px;
+    // padding-left: 70px;
+    // padding-bottom: 20px;
+
+}
+
+h4{
+    font-size: 100px;
+    opacity: 0.8;
+    color: #8c4141;
+    font-family: 'Josefin Sans';
+    // padding-top: 110px;
     padding-left: 70px;
     padding-bottom: 20px;
-
 }
 .homepage {
     height: 100vh;
@@ -219,6 +300,10 @@ p.admin {
 
 p#please {
     text-align: center;
+}
+
+#video {
+
 }
 
 //----------------------------------
