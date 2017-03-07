@@ -8,7 +8,12 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema ({
     username: String,
     password: String,
-    email: String
+    email: String,
+    type: String,
+    createdOn: String,
+    updatedOn: String,
+    status: String,
+    imageUrl: String
 });
 
 //Take the user schema object and create a user model object for

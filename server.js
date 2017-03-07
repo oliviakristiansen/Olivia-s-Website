@@ -62,7 +62,16 @@ server.use (flash());
 //Set a global function that will be run before any of our other routes are run.
 server.use (function (request, response, next) {
     //Set the local data in the template to use the user session data.
-    response.locals.user = request.session.user;
+    // response.locals.user = request.session.user;
+    var user = request.session.user;
+    if (user) {
+        response.locals.user = user;
+
+        //Check if we have an admin user.
+        if (user && user.type == 'admin') {
+            user.admin = true;
+        }
+    }
 
     //Set the flash object to be set and used before running any other routes or functions.
     response.locals.message = request.flash ();
@@ -103,7 +112,7 @@ var mongoClient = require ('mongodb').MongoClient;
 //Create a reference to the database.
 global.db;
 
-mongoClient.connect ('mongodb://localhost:27017/olivia_website_database', function (error, database) {
+mongoClient.connect ('mongodb://bobross:password@ds145828.mlab.com:45828/trainer_database', function (error, database) {
     if (error) {
         console.error ('***ERROR: Unable to connect to the mongo database.');
         console.error (error);
@@ -137,8 +146,13 @@ server.use ('/', basicRoutes);
 var lessonRoutes = require ('./routes/lesson.js');
 server.use ('/lesson', lessonRoutes);
 
-var userRoutes = require ('./routes/user.js');
+//Connect user login/register/help route.
+var userRoutes = require ('./routes/user/user.js');
 server.use ('/user', userRoutes);
+
+//Connect user edit/delete route.
+var updateRoutes = require ('./routes/user/update.js');
+server.use ('/update', updateRoutes);
 
 //Test server route: tests the database query to see if it works.
 server.get ('/test', function (request, response) {
@@ -158,7 +172,7 @@ server.get ('/test', function (request, response) {
 var mongoose = require ('mongoose');
 
 //Connect mongoose to the mongo db server.
-mongoose.connect ('mongodb://localhost:27017/olivia_website_database');
+mongoose.connect ('mongodb://bobross:password@ds145828.mlab.com:45828/trainer_database');
 
 //Set the mongoose promise library to use.
 mongoose.Promise = require ('bluebird');

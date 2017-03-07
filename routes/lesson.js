@@ -7,6 +7,8 @@ var router = express.Router ();
 //Load in the Lesson schema object.
 var Lesson = require ('../model/basic.js')
 
+var moment = require ('moment');
+
 // - Lesson
 //        - CRUD
 //            - Create
@@ -26,22 +28,37 @@ var Lesson = require ('../model/basic.js')
 
 //---CRUD operations----
 
-//Create
+// Create
 router.get ('/create', function (request, response) {
     // response.send ('You are on the create page!');
     response.render ('lessons/create')
 });
 
 router.post ('/', function (request, response) {
-    var newLesson = Lesson (request.body);
+    // -------------------------------------------------------
+    // Convert the time sent down by the 'request.body.time' to
+    // always be formatted in military time.
 
+    // Use the moment library to parse out the time string.
+    var time = moment (request.body.time);
+
+    // Update the request body's time property to use the newly
+    // formated time that is in military time format.
+    request.body.time = time.format ('HH:mm');
+
+    console.log ('*** Body: ', request.body.time);
+
+    // -------------------------------------------------------
+    // Save the lesson.
+    var newLesson = Lesson (request.body);
     newLesson.save (function (error) {
         if (error) {
             var errorMessage = 'Unable to save the lesson';
             console.log ('***ERROR: ' + errorMessage);
         }
         else {
-            if (request.sendJson) {
+            // console.log ('HELP', request.sendJson);
+            if (request.sendJson == true) {
                 response.json ({
                     message: 'New lesson was saved.'
                 });
@@ -71,19 +88,32 @@ router.get ('/',function (request, response) {
     //         });
     //     }
     // });
-    Lesson.find ({}).sort('date').sort('time').exec(function (error, result) {
+
+    var filter = {status: 'active'};
+    if (request.body.day) {
+        filter.day = request.body.day;
+        // filter.email = request.session.user.email;
+    }
+    // console.log ('TESTING', request.body.date);
+    Lesson.find (filter).sort('time').exec(function (error, result) {
         if (error) {
             var errorMessage = 'Unable to sort lessons';
             console.log ('***ERROR: ' + errorMessage);
         }
         else {
-            response.render ('lessons/request', {
-                data: {
-                    lessons: result
-                }
-            });
+            if (request.sendJson == true) {
+                response.json (result);
+            }
+            else {
+                response.render ('lessons/request', {
+                    data: {
+                        lessons: result
+                    }
+                });
+            }
         }
     });
+
 });
 
 router.get ('/:id', function (request, response) {
@@ -98,12 +128,17 @@ router.get ('/:id', function (request, response) {
             console.error ('***ERROR: ' + errorMessage);
             response.send (errorMessage);
         }
-        else {response.render ('lessons/view', {
-            data: {
-                lesson: result,
+        else {
+            if (request.sendJson == true) {
+                response.json (result);
             }
-        });
-        console.log ('This is the result: ', result);
+            else {
+                response.render ('lessons/view', {
+                    data: {
+                        lesson: result
+                    }
+                });
+            }
         }
     });
 });
@@ -144,7 +179,7 @@ router.put ('/:id', function (request, response) {
             response.send (errorMessage);
         }
         else {
-            if (request.sendJson) {
+            if (request.sendJson == true) {
                 response.json ({
                     message: 'Lesson was updated.'
                 });

@@ -1,109 +1,140 @@
-<h2>Sign up for a lesson!</h2>
+<body id="lessons">
 
-{{#if message.success}}
-    <div class = "success notice">
-        <p>{{ message.success }}</p>
-    </div>
-{{/if}}
+    {{#if message.success}}
+        <div class = "success notice">
+            <p>{{ message.success }}</p>
+        </div>
+    {{/if}}
 
-<p>Olivia offers violin, viola and piano lessons to all ages! If you are interested in one, please check out the calendar below to see if her available times will work with your schedule. These days, she has a pretty busy life so the available times below are the only times she is able to teach. Please login or register so you are able to fill out some information to get you started with lessons. If there is a time on her schedule but it is already taken by another student, you can click on that specific time to see if there is a waitlist. If you would like to be placed on the waitlist, please fill out the required information and leave a comment with the date/time of the lesson for which you would like to be waitlisted. Thanks!</p>
-
-
-<!-- Create button below is only for admin -->
-<a class="btn btn-primary" href="/lesson/create">New Lesson</a>
-
-<!-- This list of names will only be for admin. User will just see unavailable -->
-{{#each data.lessons }}
     <div class="panel panel-default">
         <div class="panel-body">
-            <div>
-                <strong>Name: </strong><a href ="/lesson/{{ id }}">{{ firstName }} {{ lastName}}</a>
-            </div>
-            <div>
-                <strong>Day of Week: </strong>{{ day }}
-            </div>
-            <div>
-                <strong>Time: </strong>{{ time }}
-            </div>
+            <h4>lessons</h4>
+            <!-- <p>Olivia offers violin, viola and piano lessons to all ages! If you are interested in a lesson with Olivia, please login or register so you are able to fill out some information to get you started with lessons. Once you fill out that information, you will recieve a confirmation email. Olivia will also receive an email with your information and she will get back to you as soon as she can! Thank you and happy practicing!</p> -->
+            <p>Olivia has been teaching lessons to students of all ages for over 5 years and is looking forward to teaching her future students. She is very passionate about each and every one of her students and individulizes the lessons based on the students level. If you are interested in a lesson, please <a href="/contact">contact</a> her for pricing and available times. Happy practicing!
         </div>
     </div>
-{{/each }}
 
 
-
-<!-- Requesting a lesson will mainly be for user -->
-{{#if user }}
-<p>Please enter the following information to request a lesson.</p>
-
+    <!-- Create button below is only for admin -->
+    <!-- <a class="btn btn-primary" href="/lesson/create">New Lesson</a> -->
+    <!-- <div class="select">Select a day of the week below to view the current taken lesson times.</div>
     <div class="container">
         <form method = "POST" action="/lesson" enctype="application/x-www-form-urlencoded">
+            <input name="_method" type="hidden" value="GET">
             <div class="form-group">
-                <label for="usr">First name: </label>
-                <input class="form-control" name="firstName" type="text" placeholder="First Name" required>
-            </div>
-            <div class="form-group">
-                <label for="usr">Last name: </label>
-                <input class="form-control" name="lastName" type="text" placeholder="Last Name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address: </label>
-                <input class="form-control" name="email" type="email" placeholder="Email Address" required>
-            </div>
-            <div class="form-group">
-                <label for="telephone">Telephone: </label>
-                <input class="form-control" name="telephone" type="number" placeholder="Telephone Number" required>
-            </div>
-            <div class="form-group">
-                <label for="instrument">Instrument: </label>
-                <select name="type" required>
-                    <option name="violin" type="checkbox">Violin</option>
-                    <option name="viola" type="checkbox">Viola</option>
-                    <option name="piano" type="checkbox">Piano</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Length of Lesson (in minutes): </label>
-                <select name="length">
-                    <option value="30">30</option>
-                    <option value="45">45</option>
-                    <option value="60">60</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Start Date: </label>
-                <input name="date" type="date" placeholder="Starting Date">
-            </div>
-            <div class="form-group">
-                <label>Day of Week: </label>
-                <!-- <input name="day" type="text" placeholder="Day of Week"> -->
+                <label for="day">Day: </label>
                 <select name="day">
-                    <option value="Monday's">Monday's</option>
-                    <option value="Tuesday's">Tuesday's</option>
-                    <option value="Wednesday's">Wednesday's</option>
-                    <option value="Thursday's">Thursday's</option>
-                    <option value="Friday's">Friday's</option>
-                    <option value="Saturday's">Saturday's</option>
-                    <option value="Sunday's">Sunday's</option>
+                    <option value=""></option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <label>Select Time: </label>
-                <input name="time" type="time" placeholder="Time">
-            </div>
-            <div class="form-group">
-                <label for="where">Where: </label>
-                <div action="">
-                    <input type="radio" name="where" value="in-home" checked="checked">In-Home Lesson <br>
-                    <input type="radio" name="where" value="olivia-home">Olivia-Home Lesson <br>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Comments: </label>
-                <textarea class="form-control" name="comments"></textarea>
-            <button class="btn btn-default">Request</button>
-        </form>
-    </div>
+                <button class="btn btn-default" type="submit" id="load">Load</button>
+                <div class="list"> -->
+                    <!-- This list of names will only be for admin. User will just see unavailable -->
+                    <!-- {{#each data.lessons }}
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="lessons">
+                            <div> -->
+                                <!-- <strong>Name: </strong><a href ="/lesson/{{ id }}">{{ firstName }} {{ lastName}}</a> -->
+                            <!-- </div>
+                            <div>
+                                <h1><strong>{{ day }}</strong></h1>
+                            </div>
+                            <div>
+                                <strong>Time: </strong>{{ time }}
+                            </div>
+                            <div>
+                                <strong>Length: </strong>{{ length }}
+                            </div>
 
-{{else }}
-    <p>Please <a href="/user/login">sign in</a> to request a lesson</p>
-{{/if}}
+                        </div>
+                    </div>
+                    {{/each }}
+                </div>
+
+            </div>
+        </form>
+    </div> -->
+
+    <!-- Requesting a lesson will mainly be for user -->
+    <!-- {{#if user }}
+    <div class="select">Please enter the following information to request a lesson.</div>
+
+        <div class="container">
+            <form method = "POST" action="/" enctype="application/x-www-form-urlencoded">
+                <div class="form-group">
+                    <label for="usr">First name: </label>
+                    <input class="form-control" name="firstName" type="text" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Last name: </label>
+                    <input class="form-control" name="lastName" type="text" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address (please use the email address used when you registered for the site):</label>
+                    <input class="form-control" name="email" type="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Telephone: </label>
+                    <input class="form-control" name="telephone" type="number" placeholder="Telephone Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="instrument">Instrument: </label>
+                    <select name="type" required>
+                        <option name="violin" type="checkbox">Violin</option>
+                        <option name="viola" type="checkbox">Viola</option>
+                        <option name="piano" type="checkbox">Piano</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Length of Lesson (in minutes): </label>
+                    <select name="length">
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                        <option value="60">60</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Start Date: </label>
+                    <input name="date" type="date" placeholder="Starting Date">
+                </div>
+                <div class="form-group">
+                    <label>Day of Week: </label>
+                    <!-- <input name="day" type="text" placeholder="Day of Week"> -->
+                    <select name="day">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Select Time: </label>
+                    <input name="time" type="time" placeholder="Time">
+                </div>
+                <div class="form-group">
+                    <label for="where">Where: </label>
+                    <div action="">
+                        <input type="radio" name="where" value="in-home" checked="checked">In-Home Lesson <br>
+                        <input type="radio" name="where" value="olivia-home">Olivia-Home Lesson <br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Comments: </label>
+                    <textarea class="form-control" name="comments"></textarea>
+                <button class="btn btn-default">Request</button>
+            </form>
+        </div> -->
+
+    <!-- {{else }}
+        <p id="please">Please <a href="/user/login">sign in</a> to request a lesson</p>
+    {{/if}} -->
+</body>

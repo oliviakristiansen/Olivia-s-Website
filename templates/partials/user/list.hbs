@@ -1,0 +1,39 @@
+<body class="users">
+    <h2>Users</h2>
+
+    <a class="btn btn-primary"href="/update/create">Create User</a>
+
+
+    {{#each data.usersList}}
+        <ul>
+            <li>
+                <table border="1">
+                    <tr>
+                        <th>Name </th>
+                        <td><a href="/update/{{id}}">{{username}}</a></td>
+                    </tr>
+                    <tr>
+                        <th>E-Mail</th>
+                        <td>{{email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Date Created</th>
+                        <td>{{createdOn}}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Updated</th>
+                        <td>{{updatedOn}}</td>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <td>{{type}}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{status}}</td>
+                    </tr>
+                </table>
+            </li>
+        </ul>
+    {{/each}}
+</body>

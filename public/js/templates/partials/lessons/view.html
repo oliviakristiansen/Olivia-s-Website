@@ -1,0 +1,67 @@
+<h2>{{ lessonController.lesson.firstName }}'s Lesson information</h2>
+
+<div class="view">
+
+<button ng-click="lessonController.goToPage ('lesson-edit', { id: lessonController.lesson._id})">Edit</button>
+<button ng-click="lessonController.delete(lessonController.lesson._id)">Delete</button>
+<br>
+
+    <ul>
+        <li>
+            <table border="1">
+                <tr>
+                    <th>First Name: </th>
+                    <td>{{ lessonController.lesson.firstName }}</td>
+                </tr>
+                <tr>
+                    <th>Last Name: </th>
+                    <td>{{ lessonController.lesson.lastName }}</td>
+                </tr>
+                <tr>
+                    <th>Email: </th>
+                    <td>{{ lessonController.lesson.email }}</td>
+                </tr>
+                <tr>
+                    <th>Telephone: </th>
+                    <td>{{ lessonController.lesson.telephone }}</td>
+                </tr>
+                <tr>
+                    <th>Instrument: </th>
+                    <td>{{ lessonController.lesson.type }}</td>
+                </tr>
+                <tr>
+                    <th>Length: </th>
+                    <td>{{ lessonController.lesson.length }}</td>
+                </tr>
+                <!-- <tr>
+                    <th>Starting Date: </th>
+                    <td>{{ lessonController.lesson.date }}</td>
+                </tr> -->
+                <tr>
+                    <th>Day: </th>
+                    <td>{{ lessonController.lesson.day }}</td>
+                </tr>
+                <tr>
+                    <th>Time: </th>
+                    <td>{{ lessonController.lesson.time }}</td>
+                </tr>
+                <tr>
+                    <th>Reoccurring: </th>
+                    <td>{{ lessonController.lesson.reoccurring }}</td>
+                </tr>
+                <tr>
+                    <th>Where: </th>
+                    <td>{{ lessonController.lesson.where }}</td>
+                </tr>
+                <tr>
+                    <th>Status: </th>
+                    <td>{{ lessonController.lesson.status }}</td>
+                </tr>
+                <tr>
+                    <th>Comments: </th>
+                    <td>{{ lessonController.lesson.comments }}</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+</div>

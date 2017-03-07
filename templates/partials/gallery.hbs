@@ -1,0 +1,21 @@
+<body id="gallery">
+    <h4>gallery</h4>
+    {{#if user.admin}}
+    <p>Upload any picture you would like to use and let your website manager know and they will make sure it shows up in the gallery page.</p>
+    <form method="POST" enctype="multipart/form-data" action="/gallery">
+        <input name="imageFile" type="file"></input>
+        <button class="btn btn-primary" type="submit">Upload a Picture</button>
+    {{/if}}
+
+    <!-- <img src="/images/upload/DSC_0914.jpg" height="300px"> -->
+    <img src="/images/upload/unnamed-1.jpg" height="300px">
+    <img src="/images/upload/IMG_9225.jpg" height="300px">
+    <img src="/images/1.jpg" height="400px">
+    <img src="/images/2.jpg" height="400px">
+    <img src="/images/3.jpg" height="600px">
+    <img src="/images/4.jpg" height="400px">
+    <img src="/images/5.jpg" height="400px">
+    <img src="/images/6.jpg" height="400px">
+    <img src="/images/7.jpg" height="400px">
+    <img src="/images/8.jpg" height="400px">
+</body>
