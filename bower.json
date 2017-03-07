@@ -1,7 +1,7 @@
 {
   "name": "olivia-website",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "authors": [
     "Olivia Lemmelin <olivialemmelin@gmail.com>"
   ],
